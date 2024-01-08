@@ -28,7 +28,7 @@ class ManufacturerCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Manufacturer::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/manufacturer');
-        CRUD::setEntityNameStrings('manufacturer', 'manufacturer');
+        CRUD::setEntityNameStrings('manufacturer', 'manufacturers');
     }
 
     /**

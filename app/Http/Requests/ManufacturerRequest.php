@@ -25,8 +25,9 @@ class ManufacturerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:manufacturer|min:1|max:255',
-            'slug' => 'required|unique:manufacturer|min:1|max:255'
+            'name' => 'required|unique:manufacturers|min:1|max:255',
+            'slug' => 'required|unique:manufacturers|min:1|max:255',
+            'founded' => 'required|date'
         ];
     }
 
