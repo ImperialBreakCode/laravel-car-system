@@ -41,6 +41,11 @@ class ManufacturerModel extends Model
         return $this->belongsTo(Manufacturer::class, 'manufacturer_id');
     }
 
+    public function cars()
+    {
+        return $this->hasMany(Car::class, 'model_id');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

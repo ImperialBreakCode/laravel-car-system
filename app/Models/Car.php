@@ -6,7 +6,7 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Manufacturer extends Model
+class Car extends Model
 {
     use CrudTrait;
     use HasFactory;
@@ -17,7 +17,7 @@ class Manufacturer extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'manufacturers';
+    protected $table = 'cars';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -36,14 +36,14 @@ class Manufacturer extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function manufacturerModels()
+    public function manufacturerModel()
     {
-        return $this->hasMany(ManufacturerModel::class, 'manufacturer_id');
+        return $this->belongsTo(ManufacturerModel::class, 'model_id');
     }
 
-    public function cars()
+    public function manufacturer()
     {
-        return $this->hasMany(Car::class, 'manufacturer_id');
+        return $this->belongsTo(Manufacturer::class, 'manufacturer_id');
     }
 
     /*

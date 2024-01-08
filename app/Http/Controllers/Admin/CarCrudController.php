@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ManufacturerModelRequest;
+use App\Http\Requests\CarRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class ManufacturerModelCrudController
+ * Class CarCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class ManufacturerModelCrudController extends CrudController
+class CarCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -19,16 +19,25 @@ class ManufacturerModelCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
-    private function getForeignKeyColumn()
+    private function getForeignKeyColumns()
     {
         return [
-
-            'label' => "Manufacturer",
-            'type' => 'select',
-            'entity' => 'manufacturer',
-            'attribute' => 'name', // foreign key attribute that is shown to user
-            'model' => 'App\Models\Manufacturer', // foreign key model
-            'name' => 'manufacturer_id',
+            [
+                'label' => "Manufacturer",
+                'type' => 'select',
+                'entity' => 'manufacturer',
+                'attribute' => 'name', // foreign key attribute that is shown to user
+                'model' => 'App\Models\Manufacturer', // foreign key model
+                'name' => 'manufacturer_id',
+            ],
+            [
+                'label' => "Model",
+                'type' => 'select',
+                'entity' => 'manufacturerModel',
+                'attribute' => 'name', // foreign key attribute that is shown to user
+                'model' => 'App\Models\ManufacturerModel', // foreign key model
+                'name' => 'model_id',
+            ]
         ];
     }
 
@@ -39,9 +48,9 @@ class ManufacturerModelCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\ManufacturerModel::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/manufacturer-model');
-        CRUD::setEntityNameStrings('manufacturer model', 'manufacturer models');
+        CRUD::setModel(\App\Models\Car::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/car');
+        CRUD::setEntityNameStrings('car', 'cars');
     }
 
     /**
@@ -52,7 +61,7 @@ class ManufacturerModelCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->crud->addColumn($this->getForeignKeyColumn());
+        $this->crud->addColumns($this->getForeignKeyColumns());
 
         CRUD::setFromDb(); // set columns from db columns.
 
@@ -70,10 +79,10 @@ class ManufacturerModelCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(ManufacturerModelRequest::class);
+        CRUD::setValidation(CarRequest::class);
         CRUD::setFromDb(); // set fields from db columns.
 
-        $this->crud->addField($this->getForeignKeyColumn());
+        $this->crud->addFields($this->getForeignKeyColumns());
         /**
          * Fields can be defined using the fluent syntax:
          * - CRUD::field('price')->type('number');
