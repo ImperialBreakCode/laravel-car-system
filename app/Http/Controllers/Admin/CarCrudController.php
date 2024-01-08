@@ -19,9 +19,19 @@ class CarCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
-    private function getForeignKeyColumns()
+    private function getFields($show = false)
     {
         return [
+            [
+                'name' => 'year_of_manufacturing',
+                'label' => "Year of manufacturing",
+                'type' => 'number',
+            ],
+            [
+                'name' => 'kilometers_traveled',
+                'label' => "Kilometers traveled",
+                'type' => 'number',
+            ],
             [
                 'label' => "Manufacturer",
                 'type' => 'select',
@@ -37,6 +47,13 @@ class CarCrudController extends CrudController
                 'attribute' => 'name', // foreign key attribute that is shown to user
                 'model' => 'App\Models\ManufacturerModel', // foreign key model
                 'name' => 'model_id',
+            ],
+            [
+                'label' => "Car Image",
+                'name' => "image",
+                'type' => ($show ? 'view' : 'upload'),
+                'view' => 'partials/image',
+                'upload' => true,
             ]
         ];
     }
@@ -61,9 +78,9 @@ class CarCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->crud->addColumns($this->getForeignKeyColumns());
-
-        CRUD::setFromDb(); // set columns from db columns.
+        // set columns from db columns.
+        $this->crud->set('show.setFromDb', false);
+        $this->crud->addColumns($this->getFields(true)); 
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -82,7 +99,7 @@ class CarCrudController extends CrudController
         CRUD::setValidation(CarRequest::class);
         CRUD::setFromDb(); // set fields from db columns.
 
-        $this->crud->addFields($this->getForeignKeyColumns());
+        $this->crud->addFields($this->getFields());
         /**
          * Fields can be defined using the fluent syntax:
          * - CRUD::field('price')->type('number');

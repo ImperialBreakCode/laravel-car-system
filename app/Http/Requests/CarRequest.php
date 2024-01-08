@@ -25,7 +25,6 @@ class CarRequest extends FormRequest
     public function rules()
     {
         return [
-            'slug' => 'required|unique:cars|min:1|max:255',
             'kilometers_traveled' => 'required',
             'year_of_manufacturing' => 'required|max:3000',
             'manufacturer_id'=> 'required',
