@@ -11,9 +11,9 @@ Cars
     <div class="row">
         <div class="col d-flex justify-content-center">
             <div class="w-75 my-5">
-                <form action="#">
+                <form action="/cars/search" method="get">
                     <div class="input-group">
-                        <input class="form-control" placeholder="Type to search...">
+                        <input class="form-control" placeholder="Type to search..." name="search">
                         <input class="btn btn-primary" type="submit" value="search">
                     </div>
                 </form>

@@ -21,4 +21,18 @@ class CarController extends Controller
 
         return view('cars.car', ['car' => $car]);
     }
+
+    public function search(Request $request)
+    {
+        $search = htmlspecialchars($request->input('search'));
+
+        if(empty($search) || preg_match('/^[%_]+$/', $search))
+        {
+            return redirect()->route('cars.index');
+        }
+
+        $cars = Car::search($search)->get();
+
+        return view('cars.cars', ['cars' => $cars]);
+    }
 }

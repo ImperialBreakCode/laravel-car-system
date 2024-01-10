@@ -32,6 +32,16 @@ class Car extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function scopeSearch($query, $search){
+        return $query->where('year_of_manufacturing','LIKE','%'. $search .'%')
+            ->orWhereHas('manufacturerModel', function ($query) use ($search) {
+                $query->where('name', 'LIKE', '%'. $search .'%');
+            })
+            ->orWhereHas('manufacturer', function ($query) use ($search) {
+                $query->where('name', 'LIKE', '%'. $search .'%');
+            });
+    }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS

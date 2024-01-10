@@ -20,7 +20,8 @@ use App\Http\Controllers\ManufacturerController;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/cars', [CarController::class, 'index']);
+Route::get('/cars', [CarController::class, 'index'])->name('cars.index');;
+Route::get('/cars/search', [CarController::class, 'search'])->name('cars.search');
 Route::get('/car/{index}', [CarController::class, 'car']);
 
 Route::get('/manufacturers', [ManufacturerController::class, 'index']);
