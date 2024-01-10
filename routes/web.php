@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ModelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,6 @@ Route::get('/car/{index}', [CarController::class, 'car']);
 
 Route::get('/manufacturers', [ManufacturerController::class, 'index']);
 Route::get('/manufacturer/{slug}', [ManufacturerController::class, 'manufacturer']);
+
+Route::get('/models', [ModelController::class, 'index']);
+Route::get('/model/{slug}', [ModelController::class, 'model']);
