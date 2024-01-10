@@ -24,13 +24,13 @@
                                 <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('/cars') ? 'active' : '' }}" href="/cars">Cars</a>
+                                <a class="nav-link {{ request()->is('cars') ? 'active' : '' }}" href="/cars">Cars</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('/manufacturers') ? 'active' : '' }}" href="/manufacturers">Manufacturers</a>
+                                <a class="nav-link {{ request()->is('manufacturers') ? 'active' : '' }}" href="/manufacturers">Manufacturers</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('/models') ? 'active' : '' }}" href="/models">Models</a>
+                                <a class="nav-link {{ request()->is('models') ? 'active' : '' }}" href="/models">Models</a>
                             </li>
                         </ul>
                     </div>

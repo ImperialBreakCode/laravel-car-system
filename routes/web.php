@@ -15,7 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\ManufacturerController;
 
 Route::get('/', [HomeController::class, 'index']);
+
 Route::get('/cars', [CarController::class, 'index']);
 Route::get('/car/{index}', [CarController::class, 'car']);
+
+Route::get('/manufacturers', [ManufacturerController::class, 'index']);
+Route::get('/manufacturer/{slug}', [ManufacturerController::class, 'manufacturer']);
