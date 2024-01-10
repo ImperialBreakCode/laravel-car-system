@@ -8,7 +8,7 @@ Car
     <div class="container d-flex flex-column align-items-center" data-bs-theme="dark">
         <div class="row">
             <div class="col">
-                <img class="mt-5" width="400px" src="/{{ $car->image }}" alt="car">
+                <img class="mt-5" width="400px" src="{{ asset($car->image) }}" alt="car">
             </div>
         </div>
         <div class="row w-75 text-center">

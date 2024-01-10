@@ -28,7 +28,7 @@ Cars
 
         <div class="d-flex justify-content-center my-3">
             <div class="card" style="width: 18rem;">
-                <img src="{{ $car->image }}" class="card-img-top"
+                <img src="{{ asset($car->image) }}" class="card-img-top"
                     alt="car image">
                 <div class="card-body">
                     <ul class="list-group mb-3">
@@ -37,7 +37,7 @@ Cars
                         <li class="list-group-item"><b>manufacturer:</b> {{ $car->manufacturer->name }}</li>
                         <li class="list-group-item"><b>model:</b> {{ $car->manufacturerModel->name }}</li>
                     </ul>
-                    <a href="/car/{{ $car->id }}" class="btn btn-primary">View</a>
+                    <a href="{{ url('/car/' . $car->id) }}" class="btn btn-primary">View</a>
                 </div>
             </div>
         </div>
