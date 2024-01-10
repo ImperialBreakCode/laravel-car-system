@@ -70,7 +70,7 @@ class Car extends Model
     {
         $attribute_name = "image";
         // destination path relative to the disk above
-        $destination_path = "articles";
+        $destination_path = "cars";
 
         // if the image was erased
         if ($value == null) {
