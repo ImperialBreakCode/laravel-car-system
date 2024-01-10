@@ -14,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CarController;
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/cars', [CarController::class, 'index']);
+Route::get('/car/{index}', [CarController::class, 'car']);
