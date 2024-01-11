@@ -19,7 +19,7 @@ class CarFactory extends Factory
     public function definition(): array
     {
         return [
-            'year_of_manufacturing' => $this->faker->numberBetween(1800, 2023),
+            'year_of_manufacturing' => $this->faker->year(),
             'kilometers_traveled' => $this->faker->numberBetween(0, 500000),
             'manufacturer_id' => Manufacturer::factory(),
             'model_id' => ManufacturerModel::factory(),

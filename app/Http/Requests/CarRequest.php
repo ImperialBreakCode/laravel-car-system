@@ -26,7 +26,7 @@ class CarRequest extends FormRequest
     {
         return [
             'kilometers_traveled' => 'required',
-            'year_of_manufacturing' => 'required|max:3000',
+            'year_of_manufacturing' => 'required|integer|digits:4|max:3000',
             'manufacturer_id'=> 'required',
             'model_id'=> 'required',
             'image' => 'mimes:png,jpg,jpeg|max:8192'

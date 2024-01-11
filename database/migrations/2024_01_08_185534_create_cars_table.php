@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->string('year_of_manufacturing');
+            $table->year('year_of_manufacturing');
             $table->integer('kilometers_traveled')->unsigned();
             $table->integer('manufacturer_id')->unsigned();
             $table->integer('model_id')->unsigned();

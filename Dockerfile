@@ -15,7 +15,16 @@ RUN php installer --install-dir=/usr/local/bin --filename=composer
 RUN mkdir app
 VOLUME [ "/app" ]
 WORKDIR /app
-#COPY . .
+COPY . .
+
+RUN mv .env-docker.example .env
+RUN composer install
+RUN touch database/database.sqlite
+RUN php artisan migrate
+RUN mkdir storage/app/public/cars
+RUN php artisan db:seed
+RUN php artisan key:generate
+
 EXPOSE 8000
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT ["php", "artisan", "serve", "--host=0.0.0.0"]
