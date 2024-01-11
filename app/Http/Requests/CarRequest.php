@@ -29,7 +29,7 @@ class CarRequest extends FormRequest
             'year_of_manufacturing' => 'required|max:3000',
             'manufacturer_id'=> 'required',
             'model_id'=> 'required',
-            'image' => 'required|mimes:png,jpg,jpeg|max:8192'
+            'image' => 'mimes:png,jpg,jpeg|max:8192'
         ];
     }
 
