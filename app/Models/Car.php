@@ -32,6 +32,16 @@ class Car extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function scopeSearch($query, $search){
+        return $query->where('year_of_manufacturing','LIKE','%'. $search .'%')
+            ->orWhereHas('manufacturerModel', function ($query) use ($search) {
+                $query->where('name', 'LIKE', '%'. $search .'%');
+            })
+            ->orWhereHas('manufacturer', function ($query) use ($search) {
+                $query->where('name', 'LIKE', '%'. $search .'%');
+            });
+    }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
@@ -60,7 +70,7 @@ class Car extends Model
     {
         $attribute_name = "image";
         // destination path relative to the disk above
-        $destination_path = "articles";
+        $destination_path = "cars";
 
         // if the image was erased
         if ($value == null) {
@@ -69,13 +79,14 @@ class Car extends Model
 
             // set null in the database column
             $this->attributes[$attribute_name] = null;
+        } elseif ($value instanceof \Illuminate\Http\UploadedFile) {
+            $disk = "public";
+            $fileName = md5($value->getClientOriginalName() . random_int(1, 9999) . time()) . '.' . $value->getClientOriginalExtension();
+            Storage::putFileAs("public/" . $destination_path, $value, $fileName, $disk);
+            $this->attributes[$attribute_name] =  'storage/cars/' . $fileName;
+        } else {
+            $this->attributes[$attribute_name] = 'storage/cars/' . $value;
         }
-
-        $disk = "public";
-        // filename is generated -  md5($file->getClientOriginalName().random_int(1, 9999).time()).'.'.$file->getClientOriginalExtension()
-        $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path, $fileName = null);
-        $this->attributes[$attribute_name] = 'storage/' . $this->attributes[$attribute_name];
-
     }
 
     /*

@@ -1,0 +1,27 @@
+body{
+    background-color: #212529;
+    color: white;
+}
+
+.car-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+@media (max-width: 1400px){
+    .car-grid{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 992px){
+    .car-grid{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px){
+    .car-grid{
+        grid-template-columns: 1fr;
+    }
+}
