@@ -60,7 +60,7 @@ All tables have an index number as an id and timestamps for when they were creat
    - the pannel is accessable at **/admin** and has all crud operations for every db table.
 
 ## Database Seeding
-Database seeding is avaliable. If docker is used for installation, the database with be seeded automatically. Otherwise run the command below:
+Database seeding is available. If Docker is used for installation, the database will be seeded automatically. Otherwise, run the command below:
 ```bash
 php artisan db:seed
 ```
